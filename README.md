@@ -2,7 +2,7 @@
 This script is a NUI keyfob that replaces qb-vehiclekeys still in construction please feel free to make pull requests to improve the project!
 
 ### Dependencies
-qb-core
+QBCore
 
 ## Planned Updates
 
