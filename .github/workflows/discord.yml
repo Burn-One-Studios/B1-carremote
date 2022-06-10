@@ -1,0 +1,17 @@
+name: Discord Webhook
+
+on: [push]
+
+jobs:
+  git:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Run Discord Webhook
+      uses: johnnyhuy/actions-discord-git-webhook@main
+      with:
+        webhook_url: ${{ secrets.KINGZ_SEC }}
+        censor_username: false
+        hide_links: false

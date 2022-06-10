@@ -1,0 +1,334 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	cursor: default;
+}
+
+.button {
+	position: relative;
+	background-color: #2F2F2F;
+	border: none;
+	font-size: 15px;
+	color: #FFFFFF;
+	width: 170px;
+	height: 30px;
+	text-align: center;
+	vertical-align: center;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	text-decoration: none;
+	overflow: hidden;
+	border: 2px solid black;
+}
+  
+.button:after {
+	content: "";
+	background: #595959;
+	display: block;
+	position: absolute;
+	padding-top: 300%;
+	padding-left: 350%;
+	margin-left: -20px!important;
+	margin-top: -120%;
+	opacity: 0;
+	transition: all 0.8s
+}
+  
+.button:active:after {
+	padding: 0;
+	margin: 0;
+	opacity: 1;
+	transition: 0s
+}
+
+#keyfob {
+	background-image: url(./images/keyfob.png);
+	font-weight: 400;
+	font-size: 12px;
+	width: 200px;
+	height: 350px;
+	color: #212121;
+	position: absolute;
+	right: 0vh;
+	bottom: 0vh;
+	overflow: hidden;
+	display: none;
+}
+
+#screen {
+	position: absolute;
+	display: grid;
+	grid-gap: 5px;
+	grid-auto-columns: 24px;
+	grid-auto-rows: 24px;
+	margin: 6px;
+	width: 108px;
+	height: 40px;
+	top: 100px;
+	left: 39px;
+	overflow: hidden;
+}
+
+#lock {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 131px;
+	left: 37px;
+	cursor: default;
+}
+
+#lock:hover {
+	cursor: pointer;
+}
+
+#lock:focus {
+	outline:0 !important;
+}
+
+#unlock {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 131px;
+	left: 101px;
+	cursor: default;
+}
+
+#unlock:hover {
+	cursor: pointer;
+}
+
+#unlock:focus {
+	outline:0 !important;
+}
+
+#engine {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 101px;
+	left: 37px;
+}
+
+#engine:hover {
+	cursor: pointer;
+}
+
+#engine:focus {
+	outline:0 !important;
+}
+
+
+#alarm {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 101px;
+	left: 101px;
+}
+
+#alarm:hover {
+	cursor: pointer;
+}
+
+#alarm:focus {
+	outline:0 !important;
+}
+
+#trunk {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 71px;
+	left: 37px;
+}
+
+#trunk:hover {
+	cursor: pointer;
+}
+
+#trunk:focus {
+	outline:0 !important;
+}
+
+
+#share {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 71px;
+	left: 101px;
+}
+
+#share:hover {
+	cursor: pointer;
+}
+
+#share:focus {
+	outline:0 !important;
+}
+
+#findVehicle {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 41px;
+	left: 37px;
+}
+
+#findVehicle:hover {
+	cursor: pointer;
+}
+
+#findVehicle:focus {
+	outline:0 !important;
+}
+
+
+#close {
+	background-color: transparent;
+	border-color: transparent;
+	position: absolute;
+	width: 62px;
+	height: 29px;
+	bottom: 41px;
+	left: 101px;
+}
+
+#close:hover {
+	cursor: pointer;
+}
+
+#close:focus {
+	outline:0 !important;
+}
+
+
+
+
+
+.icon {
+	width: 100%;
+	height: 100%;
+}
+
+#battery {
+	grid-row: 1;
+	grid-column: 4;
+}
+
+#connectionStatus {
+	grid-row: 1;
+	grid-column: 1;
+}
+
+#engineStatus {
+	grid-row: 1;
+	grid-column: 3;
+}
+
+#lockedStatus {
+	grid-row: 1;
+	grid-column: 2;
+}
+
+#battery-0 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-10 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-20 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-30 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-40 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-50 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-60 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-70 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-80 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-90 {
+	display: none;
+	z-index: 9999;
+}
+
+#battery-100 {
+	display: none;
+	z-index: 9999;
+}
+
+#carConnected {
+	display: none;
+	z-index: 9999;
+}
+
+#carDisconnected {
+	display: none;
+	z-index: 9999;
+}
+
+#engineOn {
+	display: none;
+	z-index: 9999;
+}
+
+#engineOff {
+	display: none;
+	z-index: 9999;
+}
+
+#locked {
+	display: none;
+	z-index: 9999;
+}
+
+#unlocked {
+	display: none;
+	z-index: 9999;
+}
