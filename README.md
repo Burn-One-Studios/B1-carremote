@@ -1,4 +1,4 @@
-# qb-carremote
+# B1-carremote
 This script is a NUI keyfob that replaces qb-vehiclekeys still in construction please feel free to make pull requests to improve the project!
 
 ### Dependencies
