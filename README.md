@@ -9,6 +9,7 @@ QBCore
 - [ ] Add Carjacking
 - [ ] Add Lockpicking
 - [ ] Add Police alerts
+- [ ] Key as item
 
 ## License
 
