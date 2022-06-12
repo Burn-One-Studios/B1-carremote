@@ -18,9 +18,9 @@ Config.AllowForcedEntry = true     -- Set whether you want the player to be able
 Config.Debug = true
 
 --Key mapping
-Config.ToggleUi = 'ADD'
+Config.ToggleUi = 'ADD' --Defult NUMPAD ADD
 Config.ToggleEngine = 'NUMPADENTER'
-Config.ToggleLocks = 'SUBTRACT'
+Config.ToggleLocks = 'SUBTRACT' --Defult NUMPAD SUBTRACT
 
 
 --Notify configs 
