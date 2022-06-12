@@ -12,6 +12,6 @@ jobs:
     - name: Run Discord Webhook
       uses: johnnyhuy/actions-discord-git-webhook@main
       with:
-        webhook_url: ${{ secrets.KINGZ_SEC }}
+        webhook_url: ${{ secrets.B1_SEC }}
         censor_username: false
         hide_links: false
