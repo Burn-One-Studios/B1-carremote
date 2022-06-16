@@ -1,17 +1,13 @@
 name: Discord Webhook
-
 on: [push]
-
 jobs:
-  git:
+  Discord_notification:
     runs-on: ubuntu-latest
     steps:
-
-    - uses: actions/checkout@v2
-
+    - name: Checkout repository
+      uses: actions/checkout@v1
     - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main
+      uses: Kingsage311/classic-discord-webhook@main
       with:
-        webhook_url: ${{ secrets.B1_SEC }}
-        censor_username: false
-        hide_links: false
+        id: ${{ secrets.B1_ID }}
+        token: ${{ secrets.B1_TOKEN }}
