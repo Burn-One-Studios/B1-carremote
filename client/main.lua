@@ -1,13 +1,14 @@
 QBCore = exports['qb-core']:GetCoreObject()
 
 local connectedVehicle, currentVehicle, uiActive, cooldown, activeAlarms, attempted = nil, nil, false, false, {}, {}
+local lang = Config.Locale
 
 function openKeyfob(vehicle, pedCoords, vehicleCoords)
 	if vehicle and pedCoords and vehicleCoords then
 		local distance = pedCoords - vehicleCoords
 
 		if #distance > Config.MaxRemoteRange then
-			QBCore.Functions.Notify(Config.QBOutOfRange, 'error')
+			QBCore.Functions.Notify(Config.Languages[lang]['no_range'], 'error')
 			uiActive = false
 		else
 			local battery = 'battery-100'
@@ -59,25 +60,25 @@ function prepareKeyfob()
 							if connectedVehicle then
 								if connectedVehicle ~= vehicle then
 									connectedVehicle = vehicle
-									QBCore.Functions.Notify(Config.QBConnected .. plate, "success")
+									QBCore.Functions.Notify(Config.Languages[lang]['key_connected'] .. plate, "success")
 								end
 
 								if DoesEntityExist(connectedVehicle) then
 									vehicleCoords = GetEntityCoords(connectedVehicle, false)
 									openKeyfob(connectedVehicle, pedCoords, vehicleCoords)
 								else
-									QBCore.Functions.Notify(Config.QBOutOfRange, "error")
+									QBCore.Functions.Notify(Config.Languages[lang]['no_range'], "error")
 									uiActive = false
 								end
 							else
 								connectedVehicle = vehicle
-								QBCore.Functions.Notify(Config.QBConnected .. plate, "success")
+								QBCore.Functions.Notify(Config.Languages[lang]['key_connected'] .. plate, "success")
 
 								if DoesEntityExist(connectedVehicle) then
 									vehicleCoords = GetEntityCoords(connectedVehicle, false)
 									openKeyfob(connectedVehicle, pedCoords, vehicleCoords)
 								else
-									QBCore.Functions.Notify(Config.QBOutOfRange, "error")
+									QBCore.Functions.Notify(Config.Languages[lang]['no_range'], "error")
 									uiActive = false
 								end
 							end
@@ -87,11 +88,11 @@ function prepareKeyfob()
 									vehicleCoords = GetEntityCoords(connectedVehicle, false)
 									openKeyfob(connectedVehicle, pedCoords, vehicleCoords)
 								else
-									QBCore.Functions.Notify(Config.QBOutOfRange, "error")
+									QBCore.Functions.Notify(Config.Languages[lang]['no_range'], "error")
 									uiActive = false
 								end
 							else
-								QBCore.Functions.Notify(Config.QBNoConnection, "error")
+								QBCore.Functions.Notify(Config.Languages[lang]['no_connection'], "error")
 								uiActive = false
 							end
 						end
@@ -106,11 +107,11 @@ function prepareKeyfob()
 						vehicleCoords = GetEntityCoords(connectedVehicle, false)
 						openKeyfob(connectedVehicle, pedCoords, vehicleCoords)
 					else
-						QBCore.Functions.Notify(Config.QBOutOfRange, "error")
+						QBCore.Functions.Notify(Config.Languages[lang]['no_range'], "error")
 						uiActive = false
 					end
 				else
-					QBCore.Functions.Notify(Config.QBNoConnection, "error")
+					QBCore.Functions.Notify(Config.Languages[lang]['no_connection'], "error")
 					uiActive = false
 				end
 			end
@@ -120,16 +121,16 @@ function prepareKeyfob()
 					vehicleCoords = GetEntityCoords(connectedVehicle, false)
 					openKeyfob(connectedVehicle, pedCoords, vehicleCoords)
 				else
-					QBCore.Functions.Notify(Config.QBOutOfRange, "error")
+					QBCore.Functions.Notify(Config.Languages[lang]['no_range'], "error")
 					uiActive = false
 				end
 			else
-				QBCore.Functions.Notify(Config.QBNoConnection, "error")
+				QBCore.Functions.Notify(Config.Languages[lang]['no_connection'], "error")
 				uiActive = false
 			end
 		end
 	else
-		QBCore.Functions.Notify(Config.QBNoConnection, "error")
+		QBCore.Functions.Notify(Config.Languages[lang]['no_connection'], "error")
 		uiActive = false
 	end
 end
@@ -152,7 +153,8 @@ function toggleLocks(vehicle, isInside)
 					end
 
 					TriggerServerEvent('carremote:unlock', vehicleNetId, isInside, isMotorcycle)
-					QBCore.Functions.Notify(Config.QBUnlocked)
+					print("prueba")
+					QBCore.Functions.Notify(Config.Languages[lang]['veh_unlock'])
 				else
 					if not isMotorcycle then
 						TriggerServerEvent('carremote:vehicleSound', Config.MaxInsideDistance, 'lock-inside', Config.MaxInsideVolume,
@@ -160,7 +162,7 @@ function toggleLocks(vehicle, isInside)
 					end
 
 					TriggerServerEvent('carremote:lock', vehicleNetId, isInside, isMotorcycle)
-					QBCore.Functions.Notify(Config.QBLocked)
+					QBCore.Functions.Notify(Config.Languages[lang]['veh_lock'])
 				end
 			else
 				if lockStatus ~= 1 then
@@ -169,7 +171,7 @@ function toggleLocks(vehicle, isInside)
 					TriggerServerEvent('carremote:vehicleSound', Config.MaxOutsideDistance, 'unlock-inside', Config.MaxOutsideVolume,
 						vehicleNetId)
 					TriggerServerEvent('carremote:unlock', vehicleNetId, isInside, isMotorcycle)
-					QBCore.Functions.Notify(Config.QBUnlocked)
+					QBCore.Functions.Notify(Config.Languages[lang]['veh_unlock'])
 					SendNUIMessage({ type = "locks", value = 0 })
 				else
 					playAnimation()
@@ -177,7 +179,7 @@ function toggleLocks(vehicle, isInside)
 					TriggerServerEvent('carremote:vehicleSound', Config.MaxOutsideDistance, 'lock-outside', Config.MaxOutsideVolume,
 						vehicleNetId)
 					TriggerServerEvent('carremote:lock', vehicleNetId, isInside, isMotorcycle)
-					QBCore.Functions.Notify(Config.QBLocked)
+					QBCore.Functions.Notify(Config.Languages[lang]['veh_lock'])
 					SendNUIMessage({ type = "locks", value = 1 })
 				end
 			end
@@ -199,23 +201,23 @@ function toggleEngine(vehicle, isInside)
 			if isInside then
 				if engineStatus then
 					TriggerServerEvent('carremote:engineOff', vehicleNetId)
-					QBCore.Functions.Notify(Config.QBEngineOff)
+					QBCore.Functions.Notify(Config.Languages[lang]['engine_off'])
 				else
 					TriggerServerEvent('carremote:engineOn', vehicleNetId)
-					QBCore.Functions.Notify(Config.QBEngineOn, "success")
+					QBCore.Functions.Notify(Config.Languages[lang]['engine_on'], "success")
 				end
 			else
 				if engineStatus then
 					playAnimation()
 					Wait(300)
 					TriggerServerEvent('carremote:engineOff', vehicleNetId)
-					QBCore.Functions.Notify(Config.QBEngineOff)
+					QBCore.Functions.Notify(Config.Languages[lang]['engine_off'])
 					SendNUIMessage({ type = "engine", value = 0 })
 				else
 					playAnimation()
 					Wait(300)
 					TriggerServerEvent('carremote:engineOn', vehicleNetId)
-					QBCore.Functions.Notify(Config.QBEngineOn, "success")
+					QBCore.Functions.Notify(Config.Languages[lang]['engine_on'], "success")
 					SendNUIMessage({ type = "engine", value = 1 })
 				end
 			end
@@ -390,7 +392,7 @@ function grantKey(vehicle)
 		if plate and modelName then
 			connectedVehicle = vehicle
 			TriggerServerEvent('carremote:grantKey', plate, modelName)
-			QBCore.Functions.Notify(Config.QBKeysGranted .. plate, "success")
+			QBCore.Functions.Notify(Config.Languages[lang]['key_granted'] .. plate, "success")
 		end
 	end
 end
@@ -535,19 +537,19 @@ RegisterNetEvent('carremote:findVehicle', function(vehicleNetId)
 end)
 
 RegisterNetEvent('carremote:keyReceived', function(plate)
-	if plate then QBCore.Functions.Notify(Config.QBKeysReceived .. plate) end
+	if plate then QBCore.Functions.Notify(Config.Languages[lang]['key_recieve'] .. plate) end
 end)
 
 RegisterNetEvent('carremote:keyShared', function(plate)
-	if plate then QBCore.Functions.Notify(Config.QBKeyShared .. plate) end
+	if plate then QBCore.Functions.Notify(Config.Languages[lang]['key_sharec'] .. plate) end
 end)
 
 RegisterNetEvent('carremote:keyLost', function(plate)
-	if plate then QBCore.Functions.Notify(Config.QBKeyLost .. plate, "error") end
+	if plate then QBCore.Functions.Notify(Config.Languages[lang]['key_lost'] .. plate, "error") end
 end)
 
 RegisterNetEvent('carremote:allKeysLost', function()
-	if plate then QBCore.Functions.Notify(Config.QBAllKeysLost, "error") end
+	if plate then QBCore.Functions.Notify(Config.Languages[lang]['key_lost_all'], "error") end
 end)
 
 ---------------------------------------------------------------------------------
@@ -557,17 +559,17 @@ end)
 -- +hotkeyui KEYBIND COMMAND
 RegisterCommand('+hotkeyui', function()
 	if not cooldown then
-		local ped = PlayerPedId()
+		--local ped = PlayerPedId()
 
-		if (IsPedInAnyVehicle(ped, true)) then
-			local vehicle = GetVehiclePedIsIn(ped, false)
+		--if (IsPedInAnyVehicle(ped, true)) then
+			-- local vehicle = GetVehiclePedIsIn(ped, false)
 
-			if vehicle then
-				toggleLocks(vehicle, true)
-			end
-		else
+			-- if vehicle then
+			-- 	toggleLocks(vehicle, true)
+			-- end
+		--else
 			prepareKeyfob()
-		end
+		--end
 
 		cooldown = true
 		startCooldown()
@@ -660,7 +662,7 @@ RegisterNUICallback('lock', function()
 				TriggerServerEvent('carremote:vehicleSound', Config.MaxOutsideDistance, 'lock-outside', Config.MaxOutsideVolume,
 					vehicleNetId)
 				TriggerServerEvent('carremote:lock', vehicleNetId, false, isMotorcycle)
-				QBCore.Functions.Notify(Config.QBLocked)
+				QBCore.Functions.Notify(Config.Languages[lang]['veh_lock'])
 				SendNUIMessage({ type = "locks", value = 1 })
 			end
 		end
@@ -685,7 +687,7 @@ RegisterNUICallback('unlock', function()
 				TriggerServerEvent('carremote:vehicleSound', Config.MaxOutsideDistance, 'unlock-inside', Config.MaxOutsideVolume,
 					vehicleNetId)
 				TriggerServerEvent('carremote:unlock', vehicleNetId, false, isMotorcycle)
-				QBCore.Functions.Notify(Config.QBUnlocked)
+				QBCore.Functions.Notify(Config.Languages[lang]['veh_unlock'])
 				SendNUIMessage({ type = "locks", value = 0 })
 			end
 		end
@@ -726,13 +728,13 @@ RegisterNUICallback('trunk', function()
 			if GetIsDoorValid(connectedVehicle, 5) then
 				if GetVehicleDoorAngleRatio(connectedVehicle, 5) > 0.0 then
 					SetVehicleDoorShut(connectedVehicle, 5, 0)
-					QBCore.Functions.Notify(Config.QBTrunkClosed)
+					QBCore.Functions.Notify(Config.Languages[lang]['trunk_close'])
 				else
 					SetVehicleDoorOpen(connectedVehicle, 5, 0)
-					QBCore.Functions.Notify(Config.QBTrunkOpened, "success")
+					QBCore.Functions.Notify(Config.Languages[lang]['trunk_open'], "success")
 				end
 			else
-				QBCore.Functions.Notify(Config.QBNoTrunk, "error")
+				QBCore.Functions.Notify(Config.Languages[lang]['no_trunk'], "error")
 			end
 		end
 
