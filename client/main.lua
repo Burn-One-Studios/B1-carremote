@@ -559,17 +559,17 @@ end)
 -- +hotkeyui KEYBIND COMMAND
 RegisterCommand('+hotkeyui', function()
 	if not cooldown then
-		--local ped = PlayerPedId()
+		local ped = PlayerPedId()
 
-		--if (IsPedInAnyVehicle(ped, true)) then
-			-- local vehicle = GetVehiclePedIsIn(ped, false)
+		if (IsPedInAnyVehicle(ped, true)) then
+			 local vehicle = GetVehiclePedIsIn(ped, false)
 
-			-- if vehicle then
-			-- 	toggleLocks(vehicle, true)
-			-- end
-		--else
+			 if vehicle then
+			 	toggleLocks(vehicle, true)
+			 end
+		else
 			prepareKeyfob()
-		--end
+		end
 
 		cooldown = true
 		startCooldown()
