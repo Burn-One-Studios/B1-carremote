@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Locale = 'es'               -- By default there is only the 'en' locale, but you can add your own.
+Config.Locale = 'en'               -- By default there is only the 'en' locale, but you can add your own.
 Config.Cooldown = 1000             -- Cooldown Between Car Remote Actions
 Config.SwitchDistance = 3          -- How Close You Need To Be To Switch Connected Vehicles
 Config.MaxRemoteRange = 30         -- Set max range that the remote will work.
@@ -19,8 +19,8 @@ Config.Debug = true
 
 --Key mapping
 Config.ToggleUi = 'ADD' --Defult NUMPAD ADD
-Config.ToggleEngine = 'G'
-Config.ToggleLocks = 'L' --Defult NUMPAD SUBTRACT
+Config.ToggleEngine = 'NUMPADENTER' --Default NUMPAD ENTER
+Config.ToggleLocks = 'SUBTRACT' --Defult NUMPAD SUBTRACT
 
 --Notify languages
 Config.Languages = {
